@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import certifi
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-%)j_ev(g^1f0w!$na+3_vvfoi5@2$%y(igvc-kqzwsv(ai-sht
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']  # Cho phép tất cả host truy cập
 
 
 # Application definition
@@ -82,14 +83,15 @@ DATABASES = {
         'NAME': 'NewsAtlats',
         'ENFORCE_SCHEMA': False,
         'CLIENT': {
-            'host': config('MONGO_URI'),
-            'tls': True
+            'host': 'mongodb+srv://root:12345@cluster0.p1zfuq5.mongodb.net/NewsAtlats?retryWrites=true&w=majority',
+            'tls': True,
+            'tlsAllowInvalidCertificates': True
         }
     }
 }
 
 # MongoDB URI for direct access
-MONGO_URI = "mongodb+srv://root:12345@cluster0.p1zfuq5.mongodb.net/Cluster0?retryWrites=true&w=majority&appName=Cluster0"
+MONGO_URI = "mongodb+srv://root:12345@cluster0.p1zfuq5.mongodb.net/NewsAtlats?retryWrites=true&w=majority"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -145,6 +147,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Elasticsearch Configuration
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': 'localhost:9200'
+        'cloud_id': '7625433a80d24956afcdbb3b4b7d8536:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvOjQ0MyQyN2Q5NmE2Yjc5MmU0Y2U1ODBkZjJjOWU4MDEzNjA1ZSQ1ZTA1MWY5ODM4ODE0YTgzOWVhODdkMmRlMzhlN2E5Mg==',
+        'basic_auth': ('elastic', '6Doq58TB3cYO5wj9K5E7WdMN'),
+        'ca_certs': certifi.where()
     },
 }
