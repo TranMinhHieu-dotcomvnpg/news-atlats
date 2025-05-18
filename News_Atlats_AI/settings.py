@@ -83,10 +83,7 @@ DATABASES = {
         'ENFORCE_SCHEMA': False,
         'CLIENT': {
             'host': config('MONGO_URI'),
-            'tls': True,
-            'tlsAllowInvalidCertificates': True,
-            'tlsAllowInvalidHostnames': True,
-            'ssl_cert_reqs': 'CERT_NONE'
+            'tls': True
         }
     }
 }
