@@ -22,3 +22,4 @@ django-elasticsearch-dsl
 certifi
 unidecode
 python-decouple
+gunicorn
